@@ -10,6 +10,7 @@ defmodule Backend.Application do
     children = [
       # Starts a worker by calling: Backend.Worker.start_link(arg)
       # {Backend.Worker, arg},
+     Backend.FortuneServer
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

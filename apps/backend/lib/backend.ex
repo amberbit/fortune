@@ -1,5 +1,11 @@
-defmodule Backend do
-  def randomQuote do
+defmodule Backend.FortuneServer do
+  use GenServer
+
+  def start_link(_) do
+    GenServer.start_link(__MODULE__, :ok, name: FortuneServer)
+  end
+
+  def init(:ok) do
     quotes = [%{
       quote: "It is better to be making the news than taking it; to be an actor rather than a critic.", 
       author: "Winston Churchill"
@@ -17,6 +23,15 @@ defmodule Backend do
       author: "Winston Churchill"
     }]
 
-    Enum.random(quotes)
+    {:ok, quotes}
   end
+
+  def fetch_random_quote do
+    GenServer.call(FortuneServer, :fetch_random_quote)
+  end
+
+  def handle_call(:fetch_random_quote, _from, quotes) do
+    {:reply, Enum.random(quotes), quotes}
+  end
+
 end
