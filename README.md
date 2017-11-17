@@ -8,3 +8,9 @@ backend# iex --sname backend@localhost --cookie secret -S mix
 
 ui#iex --sname ui@localhost --cookie secret -S mix phx.server
 ui@localhost> Node.connect(:"backend@localhost")
+
+Step 2. Connect nodes using .config files
+
+backend# iex --sname backend@localhost --cookie secret --erl "-config config/backend.config" -S mix
+
+ui# iex --sname ui@localhost --cookie secret --erl "-config config/ui.config" -S mix phx.server
