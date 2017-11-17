@@ -2,7 +2,7 @@ defmodule Backend.FortuneServer do
   use GenServer
 
   def start_link(_) do
-    GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
+    GenServer.start_link(__MODULE__, :ok, name: {:global, __MODULE__})
   end
 
   def init(:ok) do
