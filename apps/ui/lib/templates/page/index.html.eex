@@ -1,8 +1,21 @@
 <div class="jumbotron">
   <p class="lead">
-    <%= @quote.quote %>
+    <%= @found_quote.quote %>
   </p>
   <p>
-    <%= @quote.author %>
+    <%= @found_quote.author %>
   </p>
 </div>
+
+<p>Jump to quote:</p>
+<a href="/0">1</a>
+|
+<a href="/1">2</a>
+|
+<a href="/2">3</a>
+|
+<a href="/3">4</a>
+|
+<a href="/4">5</a>
+|
+<a href="/">random quote</a>

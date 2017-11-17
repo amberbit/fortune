@@ -27,6 +27,13 @@ defmodule Backend.FortuneServer do
   end
 
   def handle_call(:fetch_random_quote, _from, quotes) do
-    {:reply, Enum.random(quotes), quotes}
+    {:reply, {:ok, Enum.random(quotes)}, quotes}
+  end
+
+  def handle_call({:fetch_quote, index}, _from, quotes) do
+    case Enum.at(quotes, index, :not_found) do
+      :not_found -> {:reply, {:error, :not_found}, quotes}
+      found_quote -> {:reply, {:ok, found_quote}, quotes}
+    end
   end
 end

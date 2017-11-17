@@ -2,7 +2,7 @@ defmodule Ui.ErrorView do
   use Ui, :view
 
   def render("404.html", _assigns) do
-    "Page not found"
+    {:safe, "<p>Page not found</p><a href='/'>Go back</a>"}
   end
 
   def render("500.html", _assigns) do
