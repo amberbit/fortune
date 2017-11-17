@@ -2,6 +2,17 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :backend, Backend.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "backend_repo",
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost"
+
+config :backend,
+  ecto_repos: [Backend.Repo]
+
+
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,
