@@ -1,23 +1,27 @@
 defmodule Backend.HardcodedQuotesDatabaseTest do
   use ExUnit.Case
   doctest Backend.HardcodedQuotesDatabase
-  alias Backend.HardcodedQuotesDatabase
 
-  test "HardcodedQuotesDatabase.random returns different quotes" do
+  import Backend.HardcodedQuotesDatabase, only: [random: 0, at_index: 1]
+
+  @cases 1..10
+  @indices 0..4
+
+  test "random returns different quotes" do
     uniqueQuotesNumber = 
-      Enum.uniq_by(1..100, fn _ -> HardcodedQuotesDatabase.random end)
+      Enum.uniq_by(@cases, fn _ -> random() end)
         |> Enum.count
 
     assert uniqueQuotesNumber > 1
   end
 
-  test "HardcodedQuotesDatabase.at_index(index) returns the same quote for each index" do
+  test "at_index(index) returns the same quote for each index" do
     quotesNumberForEachIndex = 
-      Enum.map(1..100, fn index -> 
-        Enum.uniq_by(1..100, fn _ -> HardcodedQuotesDatabase.at_index(index) end)
+      Enum.map(@indices, fn index -> 
+        Enum.uniq_by(@cases, fn _ -> at_index(index) end)
           |> Enum.count
       end)
 
-    assert Enum.all?(quotesNumberForEachIndex, &(&1 == 1))
+    refute Enum.any?(quotesNumberForEachIndex, fn count -> count > 1 end)
   end
 end
