@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <p class="lead">
+  <p class="quote">
     <%= @found_quote.quote %>
   </p>
   <p>

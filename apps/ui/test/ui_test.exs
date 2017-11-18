@@ -1,8 +1,15 @@
-defmodule UiTest do
-  use ExUnit.Case
-  doctest Ui
+defmodule Ui.Test do
+  use Ui.FeatureCase, async: true
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  import Wallaby.Query, only: [css: 2]
+
+  test "exactly quote is displayed on homepage", %{session: session} do
+    selectedQuote = 
+      session
+        |> visit("/")
+        |> find(css(".quote", count: 1))
+        |> Wallaby.Element.text
+
+    assert selectedQuote != ""
   end
 end
