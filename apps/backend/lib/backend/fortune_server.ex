@@ -5,7 +5,7 @@ defmodule Backend.FortuneServer do
     GenServer.start_link(__MODULE__, :ok, name: {:global, __MODULE__})
   end
 
-  @quotes_db Backend.HardcodedQuotesDatabase
+  @quotes_db Application.get_env(:backend, :quotes_database)
 
   def init(:ok) do
     {:ok, @quotes_db}
