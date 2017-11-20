@@ -10,8 +10,8 @@ config :backend, Backend.Repo,
   hostname: "localhost"
 
 config :backend,
-  ecto_repos: [Backend.Repo]
-
+  ecto_repos: [Backend.Repo],
+  quotes_database: Backend.SqlQuotesDatabase
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this

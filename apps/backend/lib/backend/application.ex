@@ -6,8 +6,6 @@ defmodule Backend.Application do
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec
-
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: Backend.Worker.start_link(arg)

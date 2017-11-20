@@ -1,4 +1,6 @@
 defmodule Backend.HardcodedQuotesDatabase do
+  @behaviour Backend.QuotesWorker
+
     @quotes [%{
       quote: "It is better to be making the news than taking it; to be an actor rather than a critic.",
       author: "Winston Churchill"
@@ -15,7 +17,6 @@ defmodule Backend.HardcodedQuotesDatabase do
       quote: "The best argument against democracy is a five-minute conversation with the average voter.",
       author: "Winston Churchill"
     }]
-
 
   def random() do
     {:ok, Enum.random(@quotes)}
